@@ -8,7 +8,6 @@ const pathNote = path.join(dir,"backend/note.txt");
 const contentNote = fs.readFileSync(pathNote,"utf-8");
 console.log(pathNote);
 
-
 const NewNote = contentNote.split("\n");
 function indexOfLastLine() {
     return NewNote.length-1;
@@ -27,7 +26,9 @@ function addNote(Note){
 }
 
 
-addNote("socode");
+addNote("hiba");
+console.log(`hostname is :${os.hostname()}`);
+
 
 console.log(NewNote.sort());
 
