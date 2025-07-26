@@ -26,7 +26,7 @@ function addNote(Note){
 }
 
 
-addNote("hiba");
+addNote("maram");
 console.log(`hostname is :${os.hostname()}`);
 
 
