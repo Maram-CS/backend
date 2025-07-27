@@ -3,8 +3,18 @@ import path from "path"
 import {DeleteNote,cleanDatabase} from "./exportFile.js";
 
 const dir = import.meta.dirname;
-console.log(dir);
+
 const pathNote = path.join(dir,"backend/note.txt");
+const addNote =(note) => {
+    try{
+        fs.appendFileSync(pathNote,`${note}`,"utf-8");
+
+            return MapNote;
+    }catch(err){
+        console.log(err);
+    }
+
+}
 const LoadNote = () => {
     try{
         const Note = [fs.readFileSync(pathNote,"utf-8")][0].trim().split(",");
@@ -25,9 +35,9 @@ const LoadNote = () => {
 }
 
 
-DeleteNote(1);
-
-export {LoadNote};
+//addNote("0:maram berrahal , 1:nahla berrahal , 2:loudjain berrahal , 3:sofia berrahal ,");
+//DeleteNote(1);
+export {LoadNote,pathNote};
 
 
 
