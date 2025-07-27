@@ -1,34 +1,34 @@
-import {readFileSync,appendFileSync} from "node:fs"
-import os from "os"
+import fs from "fs"
 import path from "path"
+import {DeleteNote,cleanDatabase} from "./exportFile.js";
 
 const dir = import.meta.dirname;
 console.log(dir);
 const pathNote = path.join(dir,"backend/note.txt");
-const contentNote = fs.readFileSync(pathNote,"utf-8");
-console.log(pathNote);
-
-const NewNote = contentNote.split("\n");
-function indexOfLastLine() {
-    return NewNote.length-1;
-}
-
-function addNote(Note){
-    NewNote.push(Note);
-    
-
-    try {
-        fs.appendFileSync(pathNote,`${NewNote[NewNote.length-1]}\n`,"utf-8");
-
-    }catch(err){
-        console.log(err);
+const LoadNote = () => {
+    try{
+        const Note = [fs.readFileSync(pathNote,"utf-8")][0].trim().split(",");
+       
+        const MapNote = new Map();
+        Note.forEach((element,index) => {
+            MapNote.set(index,element);
+        });
+        cleanDatabase(MapNote);
+        console.log(MapNote);
+        return MapNote;
+    }catch(err)
+    {
+        console.log(`you are wrong in :${err}`);
     }
+
+
 }
 
 
-addNote("maram");
-console.log(`hostname is :${os.hostname()}`);
+DeleteNote(1);
+
+export {LoadNote};
 
 
-console.log(NewNote.sort());
+
 
